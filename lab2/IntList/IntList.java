@@ -61,12 +61,14 @@ public class IntList {
   /** Returns a list consisting of the elements of A followed by the
    **  elements of B.  May modify items of A. Don't use 'new'. */
 
-  public static void dcatenate(IntList a, IntList b) {
+  public static IntList dcatenate(IntList a, IntList b) {
     //TODO:  fill in method
+    IntList c = a;
     while(a.tail!=null){
       a = a.tail;
     }
     a.tail = b;
+    return c;
   }
 
   /** Returns a list consisting of the elements of A followed by the

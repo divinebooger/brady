@@ -38,7 +38,8 @@ public class IntListTest {
     public void TestDCatenate(){
         IntList A = IntList.list(1,2,3);
         IntList B = IntList.list(4,5,6);
-        IntList.dcatenate(A,B);
+        IntList C = IntList.dcatenate(A,B);
+        assertEquals(IntList.list(1,2,3,4,5,6),C);
         assertEquals(IntList.list(1,2,3,4,5,6),A);
     }
 
