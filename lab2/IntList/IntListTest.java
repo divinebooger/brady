@@ -25,6 +25,34 @@ public class IntListTest {
       assertEquals(IntList.list(1, 4, 9), L);
     }
 
+    @Test
+    public void testndSquareListRecursive(){
+        IntList L = IntList.list(1,2,3);
+        IntList B = IntList.squareListRecursive(L);
+        assertEquals(IntList.list(1,2,3),L);
+        assertEquals(IntList.list(1,4,9),B);
+
+    }
+
+    @Test
+    public void TestDCatenate(){
+        IntList A = IntList.list(1,2,3);
+        IntList B = IntList.list(4,5,6);
+        IntList C = IntList.dcatenate(A,B);
+        assertEquals(IntList.list(1,2,3,4,5,6),C);
+        assertEquals(IntList.list(1,2,3,4,5,6),A);
+    }
+
+    @Test
+    public void testCatenate(){
+        IntList A = IntList.list(1,2,3);
+        IntList B = IntList.list(4,5,6);
+        IntList C = IntList.catenate(A,B);
+        assertEquals(IntList.list(1,2,3,4,5,6),C);
+        assertEquals(IntList.list(1,2,3),A);
+        assertEquals(IntList.list(4,5,6),B);
+    }
+
     /** Do not use the new keyword in your tests. You can create
      *  lists using the handy IntList.list method.  
      * 
