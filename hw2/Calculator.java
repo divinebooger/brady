@@ -11,9 +11,19 @@ public class Calculator {
      * @param y is an integer which is the other of the two addends
      * @return the sum of x and y
      **/
+    public EquationList superList = new EquationList(null,0,null);
+
     public int add(int x, int y) {
-        // YOUR CODE HERE
-        return -1;
+        int a = (x & y) << 1;
+        int b = (x ^ y); 
+        int p,q;
+        while(a != 0){
+            p = a;
+            q = b;
+            a = (p & q) << 1;
+            b = (p ^ q);
+        }
+        return b;
     }
 
     /**
@@ -25,10 +35,20 @@ public class Calculator {
      * @return the product of x and y
      **/
     public int multiply(int x, int y) {
-        // YOUR CODE HERE
-        return -1;
+        int p = 1;
+        int q = y;
+        int r = x;
+        int total = 0;
+        while(q != 0){
+            if ((y & p)!= 0){
+                total = add(total, r);
+            }
+            p = p<<1;
+            q = q>>>1;
+            r = r<<1;
+        }
+        return total;
     }
-
     /**
      * TASK 5A: CALCULATOR HISTORY - IMPLEMENTING THE HISTORY DATA STRUCTURE
      * saveEquation() updates calculator history by storing the equation and 
@@ -39,7 +59,12 @@ public class Calculator {
      * @param result is an integer corresponding to the result of the equation
      **/
     public void saveEquation(String equation, int result) {
-        // YOUR CODE HERE
+        EquationList semiList = new EquationList(equation,result,null);
+        EquationList tempList = superList;
+        while(tempList.next != null){
+            tempList = tempList.next;
+        }
+        tempList.next = semiList;
     }
 
     /**
@@ -50,7 +75,13 @@ public class Calculator {
      * Ex   "1 + 2 = 3"
      **/
     public void printAllHistory() {
-        // YOUR CODE HERE
+        EquationList tempList = superList.next;
+        int length = 0;
+        while(tempList != null){
+            length += 1;
+            tempList = tempList.next;
+        }
+        printHistory(length);
     }
 
     /**
@@ -61,7 +92,16 @@ public class Calculator {
      * Ex   "1 + 2 = 3"
      **/
     public void printHistory(int n) {
-        // YOUR CODE HERE
+        EquationList x = null;
+        while(n!=0 && superList.next != null){
+            EquationList tempList = superList.next;
+            while(tempList.next!=x){
+                tempList = tempList.next;
+            }
+            System.out.println(tempList.equation + " = " + Integer.toString(tempList.result));
+            n = n - 1;
+            x = tempList;
+        }
     }    
 
     /**
@@ -69,7 +109,15 @@ public class Calculator {
      * undoEquation() removes the most recent equation we saved to our history.
     **/
     public void undoEquation() {
-        // YOUR CODE HERE
+        EquationList tempList = superList;
+        while(tempList.next!=null){
+            if(tempList.next.next != null){
+                tempList = tempList.next;
+            }
+            else{
+                tempList.next = null;
+            }
+        }
     }
 
     /**
@@ -77,7 +125,7 @@ public class Calculator {
      * clearHistory() removes all entries in our history.
      **/
     public void clearHistory() {
-        // YOUR CODE HERE
+        superList.next = null;
     }
 
     /**
@@ -87,8 +135,13 @@ public class Calculator {
      * @return the sum of all of the results in history
      **/
     public int cumulativeSum() {
-        // YOUR CODE HERE
-        return -1;
+        int total = 0;
+        EquationList tempList = superList.next;
+        while(tempList != null){
+            total = total + tempList.result;
+            tempList = tempList.next;
+        }
+        return total;
     }
 
     /**
@@ -98,7 +151,12 @@ public class Calculator {
      * @return the product of all of the results in history
      **/
     public int cumulativeProduct() {
-        // YOUR CODE HERE
-        return -1;
+        int total = 1;
+        EquationList tempList = superList.next;
+        while(tempList != null){
+            total = total * tempList.result;
+            tempList = tempList.next;
+        }
+        return total;
     }
 }
