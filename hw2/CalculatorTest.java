@@ -37,8 +37,8 @@ public class CalculatorTest {
     @Test
     public void testStaffCalculatorAdd3(){
         StaffCalculator tester = new StaffCalculator();
-        int a = tester.add(2147483647,1);
-        assertEquals(-2147483648,a);
+        int a = tester.add(2,2);
+        assertEquals(4,a);
     }
 
     @Test
