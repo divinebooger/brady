@@ -15,49 +15,43 @@ public class CalculatorTest {
      **/
     @Before
     public void setUp() {
-        tester = new StaffCalculator(); // Comment me out to test your Calculator
-        // tester = new Calculator();   // Un-comment me to test your Calculator
+        //tester = new StaffCalculator(); // Comment me out to test your Calculator
+        tester = new Calculator();   // Un-comment me to test your Calculator
     }
 
     // TASK 1: WRITE JUNIT TESTS
     @Test
     public void testStaffCalculatorAdd1(){
-        StaffCalculator tester = new StaffCalculator();
         int a = tester.add(100,101);
         assertEquals(201,a);
     }
 
     @Test
     public void testStaffCalculatorAdd2(){
-        StaffCalculator tester = new StaffCalculator();
         int a = tester.add(100,-100);
         assertEquals(0,a);
     }
 
     @Test
     public void testStaffCalculatorAdd3(){
-        StaffCalculator tester = new StaffCalculator();
         int a = tester.add(2,2);
         assertEquals(4,a);
     }
 
     @Test
     public void testStaffCalculatorMultiply1(){
-        StaffCalculator tester = new StaffCalculator();
         int a = tester.multiply(6,7);
         assertEquals(42,a);
     }
 
     @Test
     public void testStaffCalculatorMultiply2(){
-        StaffCalculator tester = new StaffCalculator();
         int a = tester.multiply(-1,-5);
         assertEquals(5,a);
     }
 
     @Test
     public void testStaffCalculatorMultiply3(){
-        StaffCalculator tester = new StaffCalculator();
         int a = tester.multiply(-2,5);
         assertEquals(-10,a);
     }
