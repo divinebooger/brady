@@ -11,6 +11,9 @@ public class Flik {
 			if (!isSameNumber(i, j)) {
           break;
 			}
+			if (i==127){
+				System.out.print("poop");
+			}
 		}
 		System.out.println("i is " + i);
 	}

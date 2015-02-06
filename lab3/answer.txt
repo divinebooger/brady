@@ -1,0 +1,6 @@
+The bug happens because our loop declares i and j as int types, but the method
+isSameNumber has Integer object parameters. According to this guy called
+Dukeling on stackoverflow, "the values -128 to 127" are cached" in the Integer
+class, so it was okay for us to say Integer==Integer in this range. Once we get
+outside this range, the objects will have pointers pointing at different things,
+so they are no longer equivalent.
