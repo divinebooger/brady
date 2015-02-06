@@ -9,7 +9,7 @@ public class DoubleChain {
 
 	public DNode getFront() {
 		DNode p = head;
-		while(p.prev != null){
+		while(p != null && p.prev != null){
 			p = p.prev;
 		}
 		return p;
@@ -18,7 +18,7 @@ public class DoubleChain {
 	/** Returns the last item in the DoubleChain. */		
 	public DNode getBack() {
 		DNode p = head;
-		while(p.next != null){
+		while(p != null && p.next != null){
 			p = p.next;
 		}
 		return p;
