@@ -30,12 +30,12 @@ public class DoubleChain {
 	
 	/** Adds D to the front of the DoubleChain. */	
 	public void insertFront(double d) {
-		getFront().prev = new DNode(null,d,head);
+		getFront().prev = new DNode(null,d,this);
 	}
 	
 	/** Adds D to the back of the DoubleChain. */	
 	public void insertBack(double d) {
-		getBack().next = new DNode(head,d,null);
+		getBack().next = new DNode(this,d,null);
 	}
 	
 	/** Removes the last item in the DoubleChain and returns it. 
