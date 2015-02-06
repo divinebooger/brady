@@ -48,15 +48,8 @@ public class DoubleChain {
 	/** Returns a string representation of the DoubleChain. 
 	  * This is an extra challenge problem. */
 	public String toString() {
-		String d = new String();
-		DNode p = getFront();
-		if(p!=null){
-			while(p!=null){
-				d = d + Double.toString(p.val);
-				p = p.next;
-			}
-		}	
-		return "<["+ d + "]>";
+		/* your code here */		
+		return null;
 	}
 
 	public static class DNode {
