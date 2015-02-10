@@ -10,7 +10,7 @@ public class Board{
 	private int firePieces = 12;
 	private int waterPieces = 12;
 
-	private Board(boolean shouldBeEmpty){
+	public Board(boolean shouldBeEmpty){
 		drawEmpty = shouldBeEmpty;
 	    for (int i = 0; i < n; i+=1) {
         	for (int j = 0; j < n; j+=1) {
@@ -240,7 +240,7 @@ public class Board{
 		return false;
 	}
 
-	public void endturn(){
+	public void endTurn(){
 		if(canEndTurn()){
 			turn = turn + 1;
 			selectedPiece.doneCapturing();
