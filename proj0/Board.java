@@ -283,7 +283,9 @@ public class Board{
 					disBoard.endTurn();
 				}
 			}
-		disBoard.winner();
+		if(disBoard.winner()!=null){
+			break;
+		}
 		StdDrawPlus.show(25);
 		}
 		
