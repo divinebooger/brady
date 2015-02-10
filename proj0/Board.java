@@ -102,7 +102,7 @@ public class Board{
 	}
 
 
-	public boolean validMove(int xi, int yi, int xf, int yf){
+	private boolean validMove(int xi, int yi, int xf, int yf){
 			if(selectedPiece.isKing()){
 				return (redValidMove(xi, yi, xf, yf) || blueValidMove(xi, yi, xf, yf));
 			}
@@ -183,11 +183,9 @@ public class Board{
 	}
 
 	public void select(int x, int y){
-		if(canSelect(x,y)){
-			selectedPiece = pieceAt(x,y);
-			sX = x;
-			sY = y;
-		}
+		selectedPiece = pieceAt(x,y);
+		sX = x;
+		sY = y;
 	}
 
 	public void place(Piece p, int x, int y){
@@ -287,7 +285,6 @@ public class Board{
 				disBoard.endTurn();
 			}
 		if(disBoard.winner()!= null){
-			System.out.println(disBoard.winner());
 			break;
 		}
 		StdDrawPlus.show(25);
