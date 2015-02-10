@@ -70,47 +70,6 @@ public class Piece{
 
 	}
 
-/**	private void redMove(int x, int y){
-		if(currBoard.validMove(xPosition,yPosition,x,y)){
-			if (x - xPosition > 1) {
-				currBoard.remove(x-1,y-1);
-				didICap = true;
-			}
-			else if(xPosition - x > 1){
-				currBoard.remove(x+1,y-1);
-				didICap = true;
-			}
-			xPosition = x;
-			yPosition = y;
-			currBoard.place(this,x,y);	
-		}		
-	}
-
-	private void blueMove(int x, int y){
-		if(currBoard.validMove(xPosition,yPosition,x,y)){
-			if (x - xPosition > 1) {
-				currBoard.remove(x-1,y+1);
-				didICap = true;
-			}
-			else if(xPosition - x > 1){
-				currBoard.remove(x+1,y+1);
-				didICap = true;
-			}
-			xPosition = x;
-			yPosition = y;
-			currBoard.place(this,x,y);	
-		}		
-	}
-
-	public void move(int x, int y){
-		if(side()==0){
-			redMove(x,y);
-		}
-		else if(side()==1){
-			blueMove(x,y);
-		}
-	}
-**/
 	public void move(int x, int y){
 			if (y > yPosition){
 				if (x - xPosition > 1) {
@@ -138,12 +97,11 @@ public class Piece{
 			theKinger();
 			bomberMan();	
 		}
-	
 
 	private void bomberMan(){
 		if(isBomb() && hasCaptured()){
-	        for (int i = xPosition-1; (i <= xPosition + 1) && (i < n); i+=1) {
-	            for (int j = yPosition-1; (j <= yPosition + 1) && (j < n); j+=1) {
+	        for (int i = xPosition-1; (i <= xPosition + 1) && (i < n && i>=0); i+=1) {
+	            for (int j = yPosition-1; (j <= yPosition + 1) && (j < n && j >= 0); j+=1) {
 	            	if(currBoard.pieceAt(i,j)!=null){
 	            		if(!(currBoard.pieceAt(i,j).isShield())){
 		            		currBoard.remove(i,j);

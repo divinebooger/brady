@@ -11,8 +11,6 @@ public class Board{
 	private int waterPieces = 12;
 
 	private Board(boolean shouldBeEmpty){
-		/* if shouldbeEmpty is true, initialize empty board
-		else initialize default board */
 		drawEmpty = shouldBeEmpty;
 	    for (int i = 0; i < n; i+=1) {
         	for (int j = 0; j < n; j+=1) {
@@ -78,7 +76,7 @@ public class Board{
 		return "img/" + type + "-" + team +  king + ".png";				
 	}
 	public Piece pieceAt(int x, int y){
-		if(x >= n || y >= n){
+		if(x >= n || y >= n || y < 0 || x < 0){
 			return null;
 		}
 		return dahPieces[x][y];
@@ -87,29 +85,45 @@ public class Board{
 	
 
 	public boolean canSelect(int x, int y){
-		if(pieceAt(x,y)!=null){
-			if(pieceAt(x,y).side() == (turn%2) && (selectedPiece == null || pieceAt(x,y)!= null && hasMoved == 0)){
+		if(x >= n || y >= n || y < 0 || x < 0){
+			return false;
+		}
+		else if(pieceAt(x,y)!=null){
+			if(pieceAt(x,y).side() == (turn%2) && (selectedPiece == null || hasMoved == 0)){
 				return true;
 			}
 		}
 		else if(selectedPiece!=null){
-			if(validMove(sX,sY,x,y) && (hasMoved == 0 || selectedPiece.hasCaptured())){
+			if((validMove(sX,sY,x,y) && hasMoved == 0) || (selectedPiece.hasCaptured() && validCapture(sX,sY,x,y))) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	private boolean redValidMove(int xi, int yi, int xf, int yf){
-		if(yf == yi + 1 && (xf == xi + 1 || xf == xi - 1)){
-			if(pieceAt(xf,yf)==null){
-				return true;
+
+	public boolean validMove(int xi, int yi, int xf, int yf){
+			if(selectedPiece.isKing()){
+				return (redValidMove(xi, yi, xf, yf) || blueValidMove(xi, yi, xf, yf));
 			}
-			else{
-				return false;
+			 if((turn%2)==0){
+				return redValidMove(xi, yi, xf, yf);
 			}
-		}
-		else if(yf == yi + 2 && xf == xi + 2){
+			return blueValidMove(xi, yi, xf, yf);
+	}
+
+	private boolean validCapture(int xi, int yi, int xf, int yf){
+			if(selectedPiece.isKing()){
+				return (redValidCapture(xi, yi, xf, yf) || blueValidCapture(xi, yi, xf, yf));
+			}
+			if((turn%2) == 0) {
+				return redValidCapture(xi, yi, xf, yf);
+			}
+			return blueValidCapture(xi, yi, xf, yf);
+	}
+
+	private boolean redValidCapture(int xi, int yi, int xf, int yf){
+		if(yf == yi + 2 && xf == xi + 2){
 			if(pieceAt(xf - 1, yf - 1)!=null){
 				if(pieceAt(xf - 1, yf - 1).side() != (turn%2)){
 					return true;
@@ -126,6 +140,18 @@ public class Board{
 		return false;
 	}
 
+	private boolean redValidMove(int xi, int yi, int xf, int yf){
+		if(yf == yi + 1 && (xf == xi + 1 || xf == xi - 1)){
+			if(pieceAt(xf,yf)==null){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		return redValidCapture(xi, yi, xf, yf);
+	}
+
 	private boolean blueValidMove(int xi, int yi, int xf, int yf){
 		if(yf == yi - 1 && (xf == xi + 1 || xf == xi - 1)){
 			if(pieceAt(xf,yf)==null){
@@ -135,7 +161,11 @@ public class Board{
 				return false;
 			}
 		}
-		else if(yf == yi - 2 && xf == xi + 2){
+		return blueValidCapture(xi, yi, xf, yf);
+	}
+
+	private boolean blueValidCapture(int xi, int yi, int xf, int yf){
+		if(yf == yi - 2 && xf == xi + 2){
 			if(pieceAt(xf - 1, yf + 1)!=null){
 				if(pieceAt(xf - 1, yf + 1).side() != (turn%2)){
 					return true;
@@ -152,18 +182,6 @@ public class Board{
 		return false;
 	}
 
-	public boolean validMove(int xi, int yi, int xf, int yf){
-		System.out.println("xi=" +Integer.toString(xi));
-		System.out.println("yi=" +Integer.toString(yi));
-		if(pieceAt(xi,yi).isKing()){
-			return (redValidMove(xi, yi, xf, yf) || blueValidMove(xi, yi, xf, yf));
-		}
-		else if((turn%2)==0){
-			return redValidMove(xi, yi, xf, yf);
-		}
-		return blueValidMove(xi, yi, xf, yf);
-	}
-
 	public void select(int x, int y){
 		if(canSelect(x,y)){
 			selectedPiece = pieceAt(x,y);
@@ -171,29 +189,6 @@ public class Board{
 			sY = y;
 		}
 	}
-
-	/**private int xLocation(Piece p){
-	    for (int i = 0; i < n; i+=1) {
-        	for (int j = 0; j < n; j+=1) {
-        		if (dahPieces[i][j] == p){
-        			return i;
-        		}
-        	}
-		}
-		return n+1;
-	}
-
-	private int yLocation(Piece p){
-	    for (int i = 0; i < n; i+=1) {
-        	for (int j = 0; j < n; j+=1) {
-        		if (dahPieces[i][j] == p){
-        			return j;
-        		}
-        	}
-		}
-		return n+1;
-	}
-**/
 
 	public void place(Piece p, int x, int y){
 		if (x<n && y<n){
@@ -207,8 +202,10 @@ public class Board{
 	        dahPieces[x][y] = p;
 		}
 		hasMoved += 1;
-		sX = x;
-		sY = y;
+		if(p == selectedPiece){
+			sX = x;
+			sY = y;
+		}
 	}
 
 	public Piece remove(int x, int y){
@@ -289,7 +286,10 @@ public class Board{
 			if(StdDrawPlus.isSpacePressed()){
 				disBoard.endturn();
 			}
-		disBoard.winner();
+		if(disBoard.winner()!= null){
+			System.out.println(disBoard.winner());
+			break;
+		}
 		StdDrawPlus.show(25);
 		}
 		
