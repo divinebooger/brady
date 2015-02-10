@@ -12,26 +12,28 @@ public class Board{
 
 	public Board(boolean shouldBeEmpty){
 		drawEmpty = shouldBeEmpty;
-	    for (int i = 0; i < n; i+=1) {
-        	for (int j = 0; j < n; j+=1) {
-        		if(j == 0 && (i % 2 == 0)){
-        			dahPieces[i][j] = new Piece(true,this,i,j,"pawn");
-        		}
-        		if(j == 1 && (i % 2 == 1)){
-        			dahPieces[i][j] = new Piece(true,this,i,j,"shield");
-        		}
-        		if(j == 2 && (i % 2 == 0)){
-        			dahPieces[i][j] = new Piece(true,this,i,j,"bomb");
-        		}
-        		if(j == (n-1) && (i % 2 == 1)){
-        			dahPieces[i][j] = new Piece(false,this,i,j,"pawn");
-        		}
-        		if(j == (n-2) && (i % 2 == 0)){
-        			dahPieces[i][j] = new Piece(false,this,i,j,"shield");
-        		}
-        		if(j == (n-3) && (i % 2 == 1)){
-        			dahPieces[i][j] = new Piece(false,this,i,j,"bomb");
-        		}
+		if(!drawEmpty){
+		    for (int i = 0; i < n; i+=1) {
+	        	for (int j = 0; j < n; j+=1) {
+	        		if(j == 0 && (i % 2 == 0)){
+	        			dahPieces[i][j] = new Piece(true,this,i,j,"pawn");
+	        		}
+	        		if(j == 1 && (i % 2 == 1)){
+	        			dahPieces[i][j] = new Piece(true,this,i,j,"shield");
+	        		}
+	        		if(j == 2 && (i % 2 == 0)){
+	        			dahPieces[i][j] = new Piece(true,this,i,j,"bomb");
+	        		}
+	        		if(j == (n-1) && (i % 2 == 1)){
+	        			dahPieces[i][j] = new Piece(false,this,i,j,"pawn");
+	        		}
+	        		if(j == (n-2) && (i % 2 == 0)){
+	        			dahPieces[i][j] = new Piece(false,this,i,j,"shield");
+	        		}
+	        		if(j == (n-3) && (i % 2 == 1)){
+	        			dahPieces[i][j] = new Piece(false,this,i,j,"bomb");
+	        		}
+	        	}
 
 			}
 		}
