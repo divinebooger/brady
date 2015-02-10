@@ -189,7 +189,7 @@ public class Board{
 	}
 
 	public void place(Piece p, int x, int y){
-		if (x<n && y<n){
+		if (x < n && y < n && x >= 0 && y >= 0){
 			for (int i = 0; i < n; i+=1) {
         		for (int j = 0; j < n; j+=1) {
         			if (dahPieces[i][j] == p){
@@ -208,7 +208,7 @@ public class Board{
 
 	public Piece remove(int x, int y){
 		Piece p;
-		if(x >= n && y >= n){
+		if(x >= n && y >= n && x<0 && y<0){
 			System.out.println("OUT OF BOUNDS");
 			return null;
 		}
@@ -239,13 +239,10 @@ public class Board{
 	}
 
 	public void endTurn(){
-		if(canEndTurn()){
-			turn = turn + 1;
-			selectedPiece.doneCapturing();
-			selectedPiece = null;
-			hasMoved = 0;
-		}
-
+		turn = turn + 1;
+		selectedPiece.doneCapturing();
+		selectedPiece = null;
+		hasMoved = 0;
 	}
 
 	public String winner(){
@@ -275,18 +272,16 @@ public class Board{
 						disBoard.select(x,y);
 					}
 					else{
-						if (disBoard.validMove(disBoard.sX,disBoard.sY,x,y)){
-							disBoard.selectedPiece.move(x,y);
-						}
+						disBoard.selectedPiece.move(x,y);
 					}
 				}
 			}
 			if(StdDrawPlus.isSpacePressed()){
-				disBoard.endTurn();
+				if(disBoard.canEndTurn()){
+					disBoard.endTurn();
+				}
 			}
-		if(disBoard.winner()!= null){
-			break;
-		}
+		disBoard.winner();
 		StdDrawPlus.show(25);
 		}
 		

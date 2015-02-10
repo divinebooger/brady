@@ -71,32 +71,32 @@ public class Piece{
 	}
 
 	public void move(int x, int y){
-			if (y > yPosition){
-				if (x - xPosition > 1) {
-					currBoard.remove(x-1,y-1);
-					didICap = true;
-				}
-				else if(xPosition - x > 1){
-					currBoard.remove(x+1,y-1);
-					didICap = true;
-				}
+		if (y > yPosition){
+			if (x - xPosition > 1) {
+				currBoard.remove(x-1,y-1);
+				didICap = true;
 			}
-			if(y < yPosition){
-				if (x - xPosition > 1) {
-					currBoard.remove(x-1,y+1);
-					didICap = true;
-				}
-				else if(xPosition - x > 1){
-					currBoard.remove(x+1,y+1);
-					didICap = true;
-				}
+			else if(xPosition - x > 1){
+				currBoard.remove(x+1,y-1);
+				didICap = true;
 			}
-			xPosition = x;
-			yPosition = y;
-			currBoard.place(this,x,y);
-			theKinger();
-			bomberMan();	
 		}
+		if(y < yPosition){
+			if (x - xPosition > 1) {
+				currBoard.remove(x-1,y+1);
+				didICap = true;
+			}
+			else if(xPosition - x > 1){
+				currBoard.remove(x+1,y+1);
+				didICap = true;
+			}
+		}
+		xPosition = x;
+		yPosition = y;
+		currBoard.place(this,x,y);
+		theKinger();
+		bomberMan();	
+	}
 
 	private void bomberMan(){
 		if(isBomb() && hasCaptured()){
