@@ -284,7 +284,7 @@ public class Board{
 				}
 			}
 			if(StdDrawPlus.isSpacePressed()){
-				disBoard.endturn();
+				disBoard.endTurn();
 			}
 		if(disBoard.winner()!= null){
 			System.out.println(disBoard.winner());
