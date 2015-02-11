@@ -1,8 +1,8 @@
 public class Piece{
 	private boolean pieceTeam;
 	private Board currBoard;
-	public int xPosition;
-	public int yPosition;
+	private int xPosition;
+	private int yPosition;
 	private String typePiece;
 	private boolean kingMe = false;
 	private boolean didICap = false;
