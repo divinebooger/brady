@@ -185,9 +185,14 @@ public class Board{
 	}
 
 	public void select(int x, int y){
-		selectedPiece = pieceAt(x,y);
-		sX = x;
-		sY = y;
+		if (pieceAt(x,y)!=null){
+			selectedPiece = pieceAt(x,y);
+			sX = x;
+			sY = y;
+		}
+		else{
+			selectedPiece.move(x,y);
+		}
 	}
 
 	public void place(Piece p, int x, int y){
@@ -270,12 +275,7 @@ public class Board{
 				double yd = StdDrawPlus.mouseY();
 				int y = (int)yd;
 				if (disBoard.canSelect(x,y)){
-					if(disBoard.pieceAt(x,y)!=null){
-						disBoard.select(x,y);
-					}
-					else{
-						disBoard.selectedPiece.move(x,y);
-					}
+					disBoard.select(x,y);
 				}
 			}
 			if(StdDrawPlus.isSpacePressed()){
