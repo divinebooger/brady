@@ -195,7 +195,7 @@ public class Board{
 	}
 
 	public void place(Piece p, int x, int y){
-		if (x < n && y < n && x >= 0 && y >= 0){
+		if (x < n && y < n && x >= 0 && y >= 0 && p!=null){
 			for (int i = 0; i < n; i+=1) {
         		for (int j = 0; j < n; j+=1) {
         			if (dahPieces[i][j] == p){
