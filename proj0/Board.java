@@ -7,8 +7,6 @@ public class Board{
 	private int sY;
 	private int turn = 0;
 	private int hasMoved = 0;
-	private int firePieces = 12;
-	private int waterPieces = 12;
 
 	public Board(boolean shouldBeEmpty){
 		drawEmpty = shouldBeEmpty;
@@ -226,12 +224,6 @@ public class Board{
 		else{
 			p = pieceAt(x,y);
 			dahPieces[x][y] = null;
-			if(p.side() == 0){
-				firePieces-=1;
-			}
-			else if(p.side() == 1){
-				waterPieces-=1;
-			}
 			return p;
 		}
 	}
@@ -252,14 +244,43 @@ public class Board{
 		hasMoved = 0;
 	}
 
+	public int numFirePieces(){
+		int check = 0;
+		for (int i = 0; i < n; i+=1) {
+            for (int j = 0; j < n; j+=1) {
+            	if(pieceAt(i,j)!=null){
+            		if(pieceAt(i,j).side() == 0){
+            			check+=1;
+            		}
+            	}
+            }
+        }
+        return check;
+	}
+
+	public int numWaterPieces(){
+		int check = 0;
+		for (int i = 0; i < n; i+=1) {
+            for (int j = 0; j < n; j+=1) {
+            	if(pieceAt(i,j)!=null){
+            		if(pieceAt(i,j).side()== 1){
+            			check+=1;
+            		}
+            	}
+            }
+        }
+        return check;
+	}
+	
+
 	public String winner(){
-		if(waterPieces == 0 && firePieces == 0){
+		if(numWaterPieces() == 0 && numFirePieces() == 0){
 			return "No one";
 		}
-		else if(firePieces==0){
+		else if(numFirePieces()==0){
 			return "Water";
 		}
-		else if(waterPieces==0){
+		else if(numWaterPieces()==0){
 			return "Fire";
 		}
 		return null;
