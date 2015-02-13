@@ -192,6 +192,7 @@ public class Board{
 		}
 		else{
 			selectedPiece.move(x,y);
+			hasMoved += 1;
 		}
 	}
 
@@ -206,7 +207,6 @@ public class Board{
         	}
 	        dahPieces[x][y] = p;
 		}
-		hasMoved += 1;
 		if(p == selectedPiece){
 			sX = x;
 			sY = y;
