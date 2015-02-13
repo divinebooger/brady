@@ -244,7 +244,7 @@ public class Board{
 		hasMoved = 0;
 	}
 
-	public int numFirePieces(){
+	private int numFirePieces(){
 		int check = 0;
 		for (int i = 0; i < n; i+=1) {
             for (int j = 0; j < n; j+=1) {
@@ -258,7 +258,7 @@ public class Board{
         return check;
 	}
 
-	public int numWaterPieces(){
+	private int numWaterPieces(){
 		int check = 0;
 		for (int i = 0; i < n; i+=1) {
             for (int j = 0; j < n; j+=1) {
