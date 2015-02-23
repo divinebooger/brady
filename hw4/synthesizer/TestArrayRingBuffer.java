@@ -11,12 +11,9 @@ public class TestArrayRingBuffer {
     public void someTest() {
         ArrayRingBuffer arb = new ArrayRingBuffer(10);
         arb.enqueue(1);
-        arb.enqueue(1);
-        arb.enqueue(1);
-        arb.enqueue(1);
-        arb.dequeue();
-        arb.enqueue(1);
-        assertEquals(4, arb.fillCount);
+        double temp = arb.dequeue();
+        assertEquals(1, temp,0.001);
+
     }
 
     /** Calls tests for ArrayRingBuffer. */

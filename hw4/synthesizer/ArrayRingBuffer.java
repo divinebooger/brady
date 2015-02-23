@@ -44,7 +44,7 @@ public class ArrayRingBuffer extends AbstractBoundedQueue {
   public double dequeue() {
     // TODO: Dequeue the first item. Don't forget to decrease fillCount and update first.
     if ( !isEmpty() ){
-      double temp = first;
+      double temp = rb[first];
       first += 1;
       fillCount -= 1;
       if (first == capacity) first = 0;
