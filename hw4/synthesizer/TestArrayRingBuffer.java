@@ -10,6 +10,13 @@ public class TestArrayRingBuffer {
     @Test
     public void someTest() {
         ArrayRingBuffer arb = new ArrayRingBuffer(10);
+        arb.enqueue(1);
+        arb.enqueue(1);
+        arb.enqueue(1);
+        arb.enqueue(1);
+        arb.dequeue();
+        arb.enqueue(1);
+        assertEquals(4, arb.fillCount);
     }
 
     /** Calls tests for ArrayRingBuffer. */
