@@ -32,29 +32,44 @@ public class TestPlip {
 
     @Test
     public void testReplicate() {
+        Plip p = new Plip(2);
+        Plip g = p.replicate();
+        assertNotSame(p,g);
+        assertEquals(1, p.energy(), 0.001);
+        assertEquals(1, g.energy(), 0.001);
 
     }
 
-    //@Test
+    @Test
     public void testChoose() {
-        Plip p = new Plip(1.2);
+        Plip p = new Plip(1);
         HashMap<Direction, Occupant> surrounded = new HashMap<Direction, Occupant>();
-        surrounded.put(Direction.TOP, new Impassible());
-        surrounded.put(Direction.BOTTOM, new Impassible());
-        surrounded.put(Direction.LEFT, new Impassible());
-        surrounded.put(Direction.RIGHT, new Impassible());
+        surrounded.put(Direction.TOP, new Clorus(1));
+        surrounded.put(Direction.BOTTOM, new Clorus(1));
+        surrounded.put(Direction.LEFT, new Clorus(1));
+        surrounded.put(Direction.RIGHT, new Empty());
 
         //You can create new empties with new Empty();
         //Despite what the spec says, you cannot test for Cloruses nearby yet.
         //Sorry!  
 
         Action actual = p.chooseAction(surrounded);
-        Action expected = new Action(Action.ActionType.STAY);
+        Action expected = new Action(Action.ActionType.MOVE, Direction.RIGHT);
 
         assertEquals(expected, actual);
+
+        HashMap<Direction, Occupant> sur = new HashMap<Direction,Occupant>();
+        sur.put(Direction.TOP, new Impassible());
+        sur.put(Direction.BOTTOM, new Impassible());
+        sur.put(Direction.RIGHT, new Impassible());
+        sur.put(Direction.LEFT, new Clorus(1));
+        Action a = p.chooseAction(sur);
+        Action ex = new Action(Action.ActionType.MOVE, Direction.LEFT);
     }
 
     public static void main(String[] args) {
+                Plip g = new Plip(2);
+        System.out.println(g.energy());
         System.exit(jh61b.junit.textui.runClasses(TestPlip.class));
     }
 } 
