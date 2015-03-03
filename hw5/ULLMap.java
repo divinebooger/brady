@@ -20,9 +20,11 @@ public class ULLMap<DatKey,DatVal> implements Map61B<DatKey, DatVal>, Iterable<D
 
     @Override
     public DatVal get(DatKey key) { //FIX ME
-        Entry g = front.get(key);
-        if (g.equals(null)) return null;
-        else return g.val;
+        if (front.equals(null)) return null;
+        for (Entry x = front; x != null; x = x.next){
+            if(key.equals(x.key)) {return x.val;}
+        }
+        return null;
     }
 
     @Override
