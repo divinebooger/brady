@@ -41,7 +41,7 @@ public class ULLMap<DatKey,DatVal> implements Map61B<DatKey, DatVal>, Iterable<D
     public boolean containsKey(DatKey key) { //FIX ME
     //FILL ME IN
         for (Entry x = front; x != null; x = x.next) {
-            if (key.equals(x.key)) {return true;}
+            if (x.key.equals(key)) {return true;}
         }
         return false; //FIX ME
     }
