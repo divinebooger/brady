@@ -35,7 +35,9 @@ public class YearlyRecord {
 
 	    /** Records that WORD occurred COUNT times in this year. */
 	    public void put(String word, int count) {
-	    	size += 1;
+	    	if(table.get(word) == null){
+	    		size += 1;
+	    	}
 	    	table.put(word, count);
 	    	booCount = false;
 	    	booWord = false;
@@ -107,4 +109,25 @@ public class YearlyRecord {
 	    	}
 	    	return size - booTable.get(word) + 1;
 		}
+
+    public static void main(String[] args) {
+        YearlyRecord yr = new YearlyRecord();
+        yr.put("teemo",10);
+        yr.put("lux", 30);
+        System.out.println(yr.rank("teemo"));
+        System.out.println(yr.words());
+        System.out.println(yr.counts());
+        yr.put("teemo", 100);
+        System.out.println(yr.rank("teemo"));
+        System.out.println(yr.words());
+        System.out.println(yr.counts());
+        yr.put("teemo", 1);
+        System.out.println(yr.rank("teemo"));
+        System.out.println(yr.words());
+        System.out.println(yr.counts());
+        yr.put("malphite", 1000);
+        System.out.println(yr.rank("teemo"));
+        System.out.println(yr.words());
+        System.out.println(yr.counts());
+    }
 }
