@@ -141,16 +141,4 @@ public class NGramMap {
         }
         return processD;
     } 
-    
-    public static void main(String[] args) {
-        NGramMap ngm = new NGramMap("./ngrams/very_short.csv", 
-                                    "./ngrams/total_counts.csv");
-        YearlyRecordProcessor yrp = new WordLengthProcessor();
-        TimeSeries<Double> yo = ngm.processedHistory(2007, 2008, yrp);
-        System.out.println(ngm.wordAppear.get(2007).words());
-        System.out.println(ngm.wordAppear.get(2007).counts());
-        System.out.println(yo.years());
-        System.out.println(yo.data());
-
-    }
 }

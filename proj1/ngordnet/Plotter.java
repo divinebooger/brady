@@ -112,10 +112,4 @@ public class Plotter {
         new SwingWrapper(chart).displayChart();
     }
 
-    public static void main(String[] args) {
-        NGramMap ngm = new NGramMap("./ngrams/words_that_start_with_q.csv", 
-        "./ngrams/total_counts.csv");
-        String [] theseWords = {"quality", "quantity"};
-        Plotter.plotAllWords(ngm, theseWords, 190, 1930);
-    }
 }
