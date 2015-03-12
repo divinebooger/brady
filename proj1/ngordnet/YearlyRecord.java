@@ -32,7 +32,10 @@ public class YearlyRecord {
     }
 
     public int count(String word) {
-        return table.get(word);
+        if (table.keySet().contains(word)){
+            return table.get(word);
+        }
+        return 0;
     }
 
     public void put(String word, int count) {
