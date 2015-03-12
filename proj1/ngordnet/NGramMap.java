@@ -2,7 +2,7 @@ package ngordnet;
 import edu.princeton.cs.introcs.In;
 import java.util.*;
 public class NGramMap {
-    
+
     private String[] counts;
     private HashMap<Integer, YearlyRecord> wordAppear;
     private TimeSeries<Long> yearWords;
