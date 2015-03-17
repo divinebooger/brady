@@ -1,0 +1,15 @@
+Random
+String Size  Number of Strings    ULLMap     BSTMap    TreeMap
+10            1000000           TimeOut     0.26 sec   3.39 sec
+10            100000            TimeOut     0.04 sec   0.16 sec
+10            10000000          TimeOut     2.26 sec   TimeOut
+
+Ordered
+10            100000                        0.13 sec
+10            1000000                       2.07 sec
+10            10000000                      4.19 sec
+
+
+My BSTMap seems to take longer in the ordered set up over the random one.
+This is because now our binary search tree is much less "bushy." It is kind of
+in order and acts almost like a linked list map.

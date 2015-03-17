@@ -1,0 +1,8 @@
+1 F Not upper bounded by log
+2 T For bushy tree, this is true
+3 T For spindly tree, this is true
+4 T It is upper bounded by N
+5 T It is upper bounded by N^2
+6 F Should be (ln(N))^2
+7 F Should be (ln(N))^2
+8 O(NlogN)
