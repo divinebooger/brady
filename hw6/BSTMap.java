@@ -1,7 +1,7 @@
 import java.util.Set;
 import java.util.HashSet;
 
-public class BSTMap<K extends Comparable, V> implements Map61B<K, V>{
+public class BSTMap<K extends Comparable, V> implements Map61B<K, V> {
     private int size;
     private Entry _list;
     private HashSet<K> keyList = new HashSet<K>();
@@ -14,7 +14,9 @@ public class BSTMap<K extends Comparable, V> implements Map61B<K, V>{
 
     @Override
     public boolean containsKey(K key) {
-        if (_list == null) return false;
+        if (_list == null) {
+            return false;
+        }
         return _list.get(key) != null;
     }
 
@@ -22,14 +24,18 @@ public class BSTMap<K extends Comparable, V> implements Map61B<K, V>{
      * map contains no mapping for the key. 
      */
     public V get(K key) {
-        if (_list == null) return null;
+        if (_list == null) {
+            return null;
+        }
         Entry lookup = _list.get(key);
-        if (lookup == null) return null;
+        if (lookup == null) {
+            return null;
+        }
         return lookup._val;
     }
 
    /* Returns the number of key-value mappings in this map. */
-    public int size(){
+    public int size() {
         return size;
     }
 
@@ -39,8 +45,7 @@ public class BSTMap<K extends Comparable, V> implements Map61B<K, V>{
             _list = insert(_list, key, value);
             size = size + 1;
             keyList.add(key);
-        }
-        else if (_list.get(key) == null) {
+        } else if (_list.get(key) == null) {
             _list = insert(_list, key, value);
             size = size + 1;
             keyList.add(key);
@@ -49,7 +54,7 @@ public class BSTMap<K extends Comparable, V> implements Map61B<K, V>{
         }
     }
 
-    private Entry insert (Entry t, K dk, V dv) {
+    private Entry insert(Entry t, K dk, V dv) {
         if (t == null) {
             return new Entry(dk, dv, null, null);
         } else if (t._key.compareTo(dk) == 1) {
@@ -72,9 +77,15 @@ public class BSTMap<K extends Comparable, V> implements Map61B<K, V>{
             _right = right;
         }
         public Entry get(K key) {
-            if (key != null && key.equals(_key)) return this;
-            if (_right != null && key.compareTo(_key) == 1) return _right.get(key);
-            if (_left != null && key.compareTo(_key) == -1) return _left.get(key);
+            if (key != null && key.equals(_key)) {
+                return this;
+            }
+            if (_right != null && key.compareTo(_key) == 1) {
+                return _right.get(key);
+            }
+            if (_left != null && key.compareTo(_key) == -1) {
+                return _left.get(key);
+            }
             return null;
         }
     }
@@ -84,11 +95,11 @@ public class BSTMap<K extends Comparable, V> implements Map61B<K, V>{
         return null;
     }
 
-    public V remove(K key, V value){
+    public V remove(K key, V value) {
         return null;
     }
 
-    public Set<K> keySet(){
+    public Set<K> keySet() {
         return keyList;
     }
 
@@ -97,16 +108,4 @@ public class BSTMap<K extends Comparable, V> implements Map61B<K, V>{
             System.out.println(get(keyz));
         }
     }
-
-    public static void main(String[] args) {
-        BSTMap<Integer, String> um = new BSTMap<Integer, String>();
-        um.put(1,"poop");
-        um.put(3,"soup");
-        um.put(2,"cheese");
-        System.out.println(um.keySet());
-        um.printInOrder();
-        System.out.println(um.containsKey(1));
-        System.out.println(um.containsKey(4));
-    }
-
 }
